@@ -1,0 +1,214 @@
+*{
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+input:focus{
+	outline-width: 0;
+}
+
+#urlcontainer{
+	position: absolute;
+	top: 65%;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	height: 100px;
+	width: 600px;
+	background-color: #000000;
+	border-radius: 25px;
+	text-align: center;	
+	z-index: 10;
+}
+
+#urlcontainer, #urlcontainer *{
+	opacity: 0.2;
+}
+
+#urlcontainer:hover , #urlcontainer:hover *{
+	opacity: 1;
+}
+
+#inputcontainer{
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	height: 55px;
+	width: 525px;
+	margin: 0 auto;
+}
+
+#urlfield{
+	height: 100%;
+	width: 77.5%;	
+	left: 0;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-right: 10px;
+	border: none;
+	border-radius: 15px;
+	color: gray;
+	font-size: 18px;
+	font-style: italic;
+	letter-spacing: 0.25px;
+}
+
+#urlsubmit{
+	height: 100%;
+	width: 15%;	
+	background-color: #007369;
+	border: none;
+	border-radius: 10px;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	letter-spacing: 1.5px;
+}
+
+#popoutcontainer, #overlaymincontainer{
+	position: absolute;
+	height: 100%;
+	width: 20px;
+	top: 0;	
+	background-color: black;
+	text-align: center;
+}
+
+#popoutcontainer{
+	left: 0;
+}
+
+#overlaymincontainer{
+	display: none;
+	right: 0;
+}
+
+#popoutcontainer i, #colorcontainer i, #overlaymincontainer i{
+	height: 12.5;
+	width: 12.5px;
+	margin-top: 10px;
+	color: white;
+}
+
+#popoutcontainer i:hover, #colorcontainer i:hover{
+	cursor: pointer;
+}
+
+#colorcontainer{
+	position: absolute;
+	height: 100%;
+	width: 75px;
+	top: 0;
+	left: 0;
+	background-color: black;
+	display: none;
+	text-align: center;
+}
+
+#soundcloudcontainer{
+	display: none;
+	position: absolute;
+	height: 100%;
+	width: 400px;
+	top: 0;
+	right: 0;
+	background-color: black;
+	opacity: 0.85;
+	text-align: center;
+}
+
+#soundcloudcontainer > div > div{	
+	margin: 0 auto;	
+	color: white;
+}
+
+#outoverlay{
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+}
+
+#inoverlay{
+	display: none;
+}
+
+#inoverlay > i {
+	height: 12.5px;
+	width: 12.5px;
+	margin-top: 10px;
+	color: white;
+}
+
+#usernamerow {
+	height: 75px;
+	width: calc(100% - 60px);
+	margin: 0 auto;
+	padding: 10px 30px 20px;
+	border-bottom: 1px white solid;
+}
+
+#userpic{
+	height: 100%;
+	width: auto;	
+	float: left;
+}
+
+#username {
+	position: relative;
+	width: 75%;
+	top: 50%;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);	
+	float: right;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-size: 24px;
+	font-style: italic;
+	letter-spacing: 3px;
+}
+
+#navbar{
+	height: 20px;
+	padding: 10px 20px;
+	border-bottom: 1px white solid;
+}
+
+.trackrow{
+	height: 50px;
+	width: 100%;
+	padding: 10px 20px;
+	text-align: center;
+	border-bottom: 1px white solid;
+}
+
+.trackrow:hover{
+	background-color: white;
+	color: black;
+	cursor: pointer;	
+}
+
+.trackrow:hover div{
+	color: black;
+}
+
+.trackTitle, .trackArtist{
+	height: 50%;
+	width: calc(100% - 40px);
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	text-align: left;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.trackTitle{
+	font-size: 18px;
+	font-weight: bold;
+	letter-spacing: 1.5px;
+}
+
+.trackArtist{
+	font-size: 14px;
+	letter-spacing: 2px;
+}
