@@ -24,7 +24,7 @@ init_canvas();
 if(localStorage.gome_oauth == null){
 	SC.initialize({
 		client_id: client_id,
-		redirect_uri: 'http://localhost/scvl/callback.html'
+		redirect_uri: 'http://guilam34.github.io/soundcloud_visualizer/callback.html'
 	});
 }
 else{
