@@ -1,5 +1,5 @@
-var client_id = '7cf649bb46d7a637e916d38cd45fd90a';
-//var client_id = '242325eecde9bc50f4d3e2acd84b9166'; //ghpages key
+//var client_id = '7cf649bb46d7a637e916d38cd45fd90a';
+var client_id = '242325eecde9bc50f4d3e2acd84b9166'; //ghpages key
 
 var colors = [["rgb(66,0,0)", "rgb(96,0,0)", "rgb(121,0,0)", "rgb(147,17,17)", "rgb(191,22,22)"], //Red
 			  ["rgb(210,54,0)", "rgb(217,81,0)", "rgb(222,109,0)", "rgb(238,137,0)", "rgb(252,166,0)"], //Orange
