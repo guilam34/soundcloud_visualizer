@@ -1,4 +1,5 @@
 var client_id = '7cf649bb46d7a637e916d38cd45fd90a';
+//var client_id = '242325eecde9bc50f4d3e2acd84b9166'; //ghpages key
 
 var colors = [["rgb(66,0,0)", "rgb(96,0,0)", "rgb(121,0,0)", "rgb(147,17,17)", "rgb(191,22,22)"], //Red
 			  ["rgb(210,54,0)", "rgb(217,81,0)", "rgb(222,109,0)", "rgb(238,137,0)", "rgb(252,166,0)"], //Orange
@@ -11,7 +12,7 @@ var colors = [["rgb(66,0,0)", "rgb(96,0,0)", "rgb(121,0,0)", "rgb(147,17,17)", "
               ["rgb(189,121,56)", "rgb(141,68,33)", "rgb(100,48,1)", "rgb(81,39,0)", "rgb(58,28,0)"], //Brown
               ["rgb(0,0,0)", "rgb(20,20,20)", "rgb(28,25,25)", "rgb(25,23,22)", "rgb(36,32,31)"]]; //Black
 
-var current_color, menus_init; //UI objects
+var current_color, current_track_index, menus_init; //UI objects
 var source, streaming, analyzer;  //Web audio objects
 var user, favorites; //Soundcloud API objects
 
@@ -82,38 +83,85 @@ function loadMenuData(me){
 	document.getElementById('username').innerHTML = user.username;
 	SC.get('/me/favorites').then(function(f){
 		favorites = f;
-		for(var i = 0; i < favorites.length; i++){									
-			var div_container = document.createElement('div');
-			div_container.className = 'trackrow';
-			div_container.setAttribute('data-streamurl', favorites[i].stream_url);			
-			document.getElementById('inoverlay').appendChild(div_container);
-			
-			var div_title = document.createElement('div');
-			div_title.className = 'trackTitle';
-			div_title.innerHTML = favorites[i].title;
-			div_container.appendChild(div_title);
-
-			var div_artist = document.createElement('div');
-			div_artist.className = 'trackArtist';
-			div_artist.innerHTML = favorites[i].user.username;
-			div_container.appendChild(div_artist);												
-		}
-
-		var tracks = document.getElementsByClassName('trackrow');
-
-		for(var i = 0; i < tracks.length; i++){
-			(function(i){
-				var stream_url = tracks[i].getAttribute('data-streamurl');
-				tracks[i].addEventListener("click", function(){
-												init_analyzer(stream_url);
-											}, false);
-			}(i))
-		}		
-
+		current_track_index = 0;				
+		load_tracks(0);
 		$('#outoverlay').hide();
 		$('#inoverlay').fadeIn();
 		$('#soundcloudcontainer').fadeIn();
 	});
+}
+
+function load_tracks(index){
+	var max_height = window.innerHeight - (22.5 + 106 + 41) - 50;
+	var num_tracks = Math.floor(max_height / 71);
+	for(var i = index * num_tracks; (i < (index + 1) * num_tracks) && (i < favorites.length); i++){									
+		var div_container = document.createElement('div');
+		div_container.className = 'trackrow';
+		div_container.setAttribute('data-streamurl', favorites[i].stream_url);			
+		document.getElementById('inoverlay').appendChild(div_container);
+		
+		var div_title = document.createElement('div');
+		div_title.className = 'trackTitle';
+		div_title.innerHTML = favorites[i].title;
+		div_container.appendChild(div_title);
+
+		var div_artist = document.createElement('div');
+		div_artist.className = 'trackArtist';
+		div_artist.innerHTML = favorites[i].user.username;
+		div_container.appendChild(div_artist);												
+	}
+
+	var tracks = document.getElementsByClassName('trackrow');
+
+	for(var i = 0; i < tracks.length; i++){
+		(function(i){
+			var stream_url = tracks[i].getAttribute('data-streamurl');
+			tracks[i].addEventListener("click", function(){
+											init_analyzer(stream_url);
+										}, false);
+		}(i))
+	}
+
+	if(num_tracks < favorites.length){
+		var track_navcontainer = document.createElement('div');
+		track_navcontainer.id = 'tracknavcontainer';
+		document.getElementById('inoverlay').appendChild(track_navcontainer);
+
+		var track_nav = document.createElement('div');
+		track_navcontainer.appendChild(track_nav);
+		var left_arrow = document.createElement('div');
+		left_arrow.innerHTML = '<i class="fa fa-arrow-left fa-lg"></i>';			
+		left_arrow.addEventListener("click", function(){
+			console.log("hello");
+										$('.trackrow').remove();
+										$('#tracknavcontainer').remove();
+										current_track_index--;
+										load_tracks(current_track_index);
+									}, false);
+		var right_arrow = document.createElement('div');
+		right_arrow.innerHTML = '<i class="fa fa-arrow-right fa-lg"></i>';	
+		right_arrow.addEventListener("click", function(){
+			console.log("hello");
+										$('.trackrow').remove();
+										$('#tracknavcontainer').remove();
+										current_track_index++;
+										load_tracks(current_track_index);
+									}, false);		
+		if(current_track_index == 0){
+			right_arrow.setAttribute('width', '100%');
+			track_nav.appendChild(right_arrow);
+		}
+		else if(num_tracks * (current_track_index + 1) > favorites.length){
+			left_arrow.setAttribute('width', '100%');
+			track_nav.appendChild(left_arrow);
+		}
+		else{
+			left_arrow.setAttribute('width', '50%');
+			right_arrow.setAttribute('width', '50%');
+			track_nav.appendChild(left_arrow);	
+			track_nav.appendChild(right_arrow);
+		}		
+	}
 }
 
 function play_track(){	
