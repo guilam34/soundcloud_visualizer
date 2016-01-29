@@ -4,7 +4,7 @@
 	overflow: hidden;
 }
 
-input:focus{
+/*input:focus{
 	outline-width: 0;
 }
 
@@ -65,7 +65,7 @@ input:focus{
 	font-size: 18px;
 	font-weight: bold;
 	letter-spacing: 1.5px;
-}
+}*/
 
 #popoutcontainer, #overlaymincontainer{
 	position: absolute;
@@ -92,7 +92,7 @@ input:focus{
 	color: white;
 }
 
-#popoutcontainer i:hover, #colorcontainer i:hover{
+#popoutcontainer i:hover, #colorcontainer i:hover, #overlaymincontainer i:hover{
 	cursor: pointer;
 }
 
@@ -131,6 +131,19 @@ input:focus{
 	-webkit-transform: translateY(-50%);
 }
 
+#signedouttitle{
+	height: 100px;
+	width: 100%;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-size: 48px;
+	letter-spacing: 2px;
+	text-align: center;
+}
+
+#soundcloudconnect{
+	width: 70%;
+}
+
 #inoverlay{
 	display: none;
 }
@@ -140,6 +153,10 @@ input:focus{
 	width: 12.5px;
 	margin-top: 10px;
 	color: white;
+}
+
+#inoverlay > i:hover{
+	cursor: pointer;
 }
 
 #usernamerow {
@@ -177,7 +194,7 @@ input:focus{
 
 .trackrow{
 	height: 50px;
-	width: 100%;
+	width: calc(100% - 40px);
 	padding: 10px 20px;
 	text-align: center;
 	border-bottom: 1px white solid;
@@ -195,7 +212,7 @@ input:focus{
 
 .trackTitle, .trackArtist{
 	height: 50%;
-	width: calc(100% - 40px);
+	width: 100%;
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	text-align: left;
 	text-overflow: ellipsis;
@@ -211,4 +228,27 @@ input:focus{
 .trackArtist{
 	font-size: 14px;
 	letter-spacing: 2px;
+}
+
+#tracknavcontainer{
+	height: 30px;
+	width: calc(100% - 20px);
+	padding: 10px;
+}
+
+#tracknavcontainer > div{
+	position: relative;
+	width: 30%;
+	margin: 0 auto;
+	top: 50%;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);	
+}
+
+#tracknavcontainer > div > div{
+	display: inline-block;
+}
+
+#tracknavcontainer > div > div:hover{
+	cursor: pointer;
 }
