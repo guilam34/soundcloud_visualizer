@@ -1,6 +1,11 @@
 var client_id = '7cf649bb46d7a637e916d38cd45fd90a';
 //var client_id = '242325eecde9bc50f4d3e2acd84b9166'; //ghpages key
 
+var ICON_NAV_HEIGHT = 22.5;
+var USER_ROW_HEIGHT = 106;
+var SECTION_NAV_HEIGHT = 0;
+var NEXT_NAV_HEIGHT = 50;
+
 var colors = [["rgb(66,0,0)", "rgb(96,0,0)", "rgb(121,0,0)", "rgb(147,17,17)", "rgb(191,22,22)"], //Red
 			  ["rgb(210,54,0)", "rgb(217,81,0)", "rgb(222,109,0)", "rgb(238,137,0)", "rgb(252,166,0)"], //Orange
 			  ["rgb(220,148,27)", "rgb(237,194,102)", "rgb(182,149,44)", "rgb(225,211,166)", "rgb(233,161,25)"], //Yellow
@@ -98,7 +103,7 @@ function resize_handler(){
 	//Scale track menu
 	$('.trackrow').remove();
 	$('#tracknavcontainer').remove();
-	var max_height = window.innerHeight - (22.5 + 106 + 41) - 50;
+	var max_height = window.innerHeight - (ICON_NAV_HEIGHT + USER_ROW_HEIGHT + SECTION_NAV_HEIGHT) - NEXT_NAV_HEIGHT;
 	var num_tracks = Math.floor(max_height / 71);
 	if(favorites.length < num_tracks * (current_track_index + 1)){
 		current_track_index = (favorites.length / num_tracks) - 1;
@@ -121,7 +126,7 @@ function loadMenuData(me){
 }
 
 function load_tracks(index){
-	var max_height = window.innerHeight - (22.5 + 106 + 41) - 50;
+	var max_height = window.innerHeight - (ICON_NAV_HEIGHT + USER_ROW_HEIGHT + SECTION_NAV_HEIGHT) - NEXT_NAV_HEIGHT;
 	var num_tracks = Math.floor(max_height / 71);
 	for(var i = index * num_tracks; (i < (index + 1) * num_tracks) && (i < favorites.length); i++){									
 		var div_container = document.createElement('div');
