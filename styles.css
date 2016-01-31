@@ -1,6 +1,7 @@
 *{
 	margin: 0;
 	padding: 0;
+	font-family: 'Quicksand', serif;
 	overflow: hidden;
 }
 
@@ -72,17 +73,21 @@
 	height: 100%;
 	width: 20px;
 	top: 0;	
-	background-color: black;
+	background-color: #010712;
 	text-align: center;
 }
 
 #popoutcontainer{
 	left: 0;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
 }
 
 #overlaymincontainer{
 	display: none;
 	right: 0;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
 }
 
 #popoutcontainer i, #colorcontainer i, #overlaymincontainer i{
@@ -102,7 +107,7 @@
 	width: 75px;
 	top: 0;
 	left: 0;
-	background-color: black;
+	background-color: #010712;
 	display: none;
 	text-align: center;
 }
@@ -114,9 +119,11 @@
 	width: 400px;
 	top: 0;
 	right: 0;
-	background-color: black;
-	opacity: 0.85;
+	background-color: #010712;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
 	text-align: center;
+/*	opacity: 0.9;*/
 }
 
 #soundcloudcontainer > div > div{	
@@ -134,9 +141,8 @@
 #signedouttitle{
 	height: 100px;
 	width: 100%;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	font-size: 48px;
-	letter-spacing: 2px;
+	letter-spacing: 3px;
 	text-align: center;
 }
 
@@ -164,7 +170,7 @@
 	width: calc(100% - 60px);
 	margin: 0 auto;
 	padding: 10px 30px 20px;
-	border-bottom: 1px white solid;
+	border-bottom: 1px #13171F solid;
 }
 
 #userpic{
@@ -179,17 +185,15 @@
 	top: 50%;
 	transform: translateY(-50%);
 	-webkit-transform: translateY(-50%);	
-	float: right;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
-	font-size: 24px;
-	font-style: italic;
-	letter-spacing: 3px;
+	float: right;	
+	font-size: 20px;
+	letter-spacing: 4px;
 }
 
 #navbar{
 	height: 20px;
 	padding: 10px 20px;
-	border-bottom: 1px white solid;
+	border-bottom: 1px #13171F solid;
 }
 
 .trackrow{
@@ -197,7 +201,7 @@
 	width: calc(100% - 40px);
 	padding: 10px 20px;
 	text-align: center;
-	border-bottom: 1px white solid;
+	border-bottom: 1px #13171F solid;
 }
 
 .trackrow:hover{
@@ -212,21 +216,20 @@
 
 .trackTitle, .trackArtist{
 	height: 50%;
-	width: 100%;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	width: 100%;	
 	text-align: left;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
 
 .trackTitle{
-	font-size: 18px;
-	font-weight: bold;
-	letter-spacing: 1.5px;
+	font-size: 16px;	
+	letter-spacing: 2px;
 }
 
 .trackArtist{
-	font-size: 14px;
+	font-size: 12px;
+	font-style: italic;
 	letter-spacing: 2px;
 }
 
