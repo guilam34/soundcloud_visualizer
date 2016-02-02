@@ -133,6 +133,7 @@ function load_tracks(index){
 		// var div_color_index = Math.floor(Math.random() * trackrow_colors.length);
 		div_container.className = 'trackrow';
 		div_container.setAttribute('data-streamurl', favorites[i].stream_url);			
+		div_container.setAttribute('data-trackindex', i);
 		// div_container.style.backgroundColor = trackrow_colors[div_color_index];
 		document.getElementById('inoverlay').appendChild(div_container);
 		
@@ -152,8 +153,9 @@ function load_tracks(index){
 	for(var i = 0; i < tracks.length; i++){
 		(function(i){
 			var stream_url = tracks[i].getAttribute('data-streamurl');
+			var track_index = tracks[i].getAttribute('data-trackindex');
 			tracks[i].addEventListener("click", function(){
-											init_analyzer(stream_url);
+											init_analyzer(stream_url, parseInt(track_index));
 										}, false);
 		}(i))
 	}
@@ -198,22 +200,22 @@ function load_tracks(index){
 	}
 }
 
-function play_track(){	
-	var track_url = document.getElementById('urlfield').value;
+// function play_track(){	
+// 	var track_url = document.getElementById('urlfield').value;
 
-	var url = 'http://api.soundcloud.com/resolve?url=' + track_url + '&client_id=' + client_id;
+// 	var url = 'http://api.soundcloud.com/resolve?url=' + track_url + '&client_id=' + client_id;
 
-	var request = new XMLHttpRequest();
-	request.onreadystatechange = function() {
-		if(request.readyState == 4 && request.status == 200){
-			init_analyzer(JSON.parse(request.responseText)['stream_url']);		
-		}
-	}
-	request.open("GET", url, true);
-	request.send(null);
-}
+// 	var request = new XMLHttpRequest();
+// 	request.onreadystatechange = function() {
+// 		if(request.readyState == 4 && request.status == 200){
+// 			init_analyzer(JSON.parse(request.responseText)['stream_url']);		
+// 		}
+// 	}
+// 	request.open("GET", url, true);
+// 	request.send(null);
+// }
 
-function init_analyzer(stream_url){	
+function init_analyzer(stream_url, track_index){	
 	if(typeof(source) != "undefined"){			
 		source.disconnect();	
 		analyzer.disconnect();		
@@ -247,6 +249,11 @@ function init_analyzer(stream_url){
 	draw();
 
 	source.mediaElement.play();		
+
+	var next_index = track_index < (favorites.length - 1) ? track_index+1 : 0;
+	audio.addEventListener('ended', function(){			
+											init_analyzer(favorites[next_index].stream_url, next_index)
+										}, false);
 }
 
 function init_canvas(color){
