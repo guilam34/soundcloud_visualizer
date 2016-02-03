@@ -1,5 +1,5 @@
-//var client_id = '7cf649bb46d7a637e916d38cd45fd90a';
-var client_id = '242325eecde9bc50f4d3e2acd84b9166'; //ghpages key
+var client_id = '7cf649bb46d7a637e916d38cd45fd90a';
+//var client_id = '242325eecde9bc50f4d3e2acd84b9166'; //ghpages key
 
 var ICON_NAV_HEIGHT = 22.5;
 var USER_ROW_HEIGHT = 106;
@@ -33,7 +33,7 @@ init_canvas();
 if(localStorage.gome_oauth == null){
 	SC.initialize({
 		client_id: client_id,
-		redirect_uri: 'http://guilam34.github.io/soundcloud_visualizer/callback.html'
+		redirect_uri: 'http://localhost/scvl/callback.html'
 	});
 }
 else{
@@ -49,9 +49,8 @@ else{
 $(document).ready(function(){
 	window.addEventListener("resize", resize_handler);
 
-	if(localStorage.gome_oauth == null){
+	if(localStorage.gome_oauth == null)
 		$('#soundcloudcontainer').fadeIn();
-	}
 
 	$('#popoutcontainer > i').click(function(){
 		$('#popoutcontainer').hide("slide", { direction: "left", easing: 'easeOutQuint', }, 800, function(){
@@ -77,6 +76,26 @@ $(document).ready(function(){
 		$('#soundcloudcontainer').hide("slide", { direction: "right", easing: 'easeOutQuint', }, 1200, function(){
 			$('#overlaymincontainer').show("slide", { direction: "right", easing: 'easeOutQuint', }, 800);
 		});
+	});
+
+	$('#usersettings').click(function(){
+		event.stopPropagation();
+		if($('#settingsdropdown').is(':visible')){
+			$('#settingsdropdown').hide();
+		}
+		else{
+			$('#settingsdropdown').show();
+		}
+	});
+
+	$('html').click(function(){
+		$('#settingsdropdown').hide();
+	});
+
+	$('#settingsdropdown').click(function(){
+		event.stopPropagation();		
+		localStorage.removeItem("gome_oauth");
+		window.location.reload(false);				
 	});
 });
 
@@ -132,6 +151,9 @@ function loadMenuData(me){
 }
 
 function load_tracks(index){
+	$('.trackrow').remove();
+	$('#tracknavcontainer').remove();
+
 	var max_height = window.innerHeight - (ICON_NAV_HEIGHT + USER_ROW_HEIGHT + SECTION_NAV_HEIGHT) - NEXT_NAV_HEIGHT;
 	var num_tracks = Math.floor(max_height / 71);
 	for(var i = index * num_tracks; (i < (index + 1) * num_tracks) && (i < favorites.length); i++){									
@@ -160,7 +182,7 @@ function load_tracks(index){
 		(function(i){
 			var stream_url = tracks[i].getAttribute('data-streamurl');
 			var track_index = tracks[i].getAttribute('data-trackindex');
-			tracks[i].addEventListener("click", function(){
+			tracks[i].addEventListener("click", function(){										
 											init_analyzer(stream_url, parseInt(track_index));
 										}, false);
 		}(i))
@@ -176,18 +198,14 @@ function load_tracks(index){
 		var left_arrow = document.createElement('div');
 		// left_arrow.innerHTML = '<i class="fa fa-angle-left fa-lg"></i>';			
 		left_arrow.innerHTML = '<i class="fa fa-long-arrow-left fa-lg arrow"></i>';
-		left_arrow.addEventListener("click", function(){			
-										$('.trackrow').remove();
-										$('#tracknavcontainer').remove();
+		left_arrow.addEventListener("click", function(){													
 										menu_index--;
 										load_tracks(menu_index);
 									}, false);
 		var right_arrow = document.createElement('div');
 		// right_arrow.innerHTML = '<i class="fa fa-angle-right fa-lg"></i>';	
 		right_arrow.innerHTML = '<i class="fa fa-long-arrow-right fa-lg arrow"></i>';	
-		right_arrow.addEventListener("click", function(){
-										$('.trackrow').remove();
-										$('#tracknavcontainer').remove();
+		right_arrow.addEventListener("click", function(){										
 										menu_index++;
 										load_tracks(menu_index);
 									}, false);		
