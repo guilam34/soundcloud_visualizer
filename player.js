@@ -1,5 +1,5 @@
-var client_id = '7cf649bb46d7a637e916d38cd45fd90a';
-//var client_id = '242325eecde9bc50f4d3e2acd84b9166'; //ghpages key
+//var client_id = '7cf649bb46d7a637e916d38cd45fd90a';
+var client_id = '242325eecde9bc50f4d3e2acd84b9166'; //ghpages key
 
 var ICON_NAV_HEIGHT = 22.5;
 var USER_ROW_HEIGHT = 106;
