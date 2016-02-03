@@ -5,6 +5,10 @@
 	overflow: hidden;
 }
 
+i:hover{
+	cursor: pointer;
+}
+
 /*input:focus{
 	outline-width: 0;
 }
@@ -90,15 +94,11 @@
 	border-bottom-left-radius: 15px;
 }
 
-#popoutcontainer i, #colorcontainer i, #overlaymincontainer i{
-	height: 12.5;
+#popoutcontainer i, #colorcontainer i, #overlaymincontainer i, #inoverlay > i {
+	height: 12.5px;
 	width: 12.5px;
 	margin-top: 10px;
 	color: white;
-}
-
-#popoutcontainer i:hover, #colorcontainer i:hover, #overlaymincontainer i:hover{
-	cursor: pointer;
 }
 
 #colorcontainer{
@@ -154,17 +154,6 @@
 	display: none;
 }
 
-#inoverlay > i {
-	height: 12.5px;
-	width: 12.5px;
-	margin-top: 10px;
-	color: white;
-}
-
-#inoverlay > i:hover{
-	cursor: pointer;
-}
-
 #usernamerow {
 	height: 75px;
 	width: calc(100% - 60px);
@@ -192,8 +181,20 @@
 
 #navbar{
 	height: 20px;
+	width: 60%;
 	padding: 10px 20px;
 	border-bottom: 1px #13171F solid;
+}
+
+#navbar > div{
+	display: inline-block;
+	position: relative;
+	height: 13px;
+	width: 30%;
+	top: 50%;
+	font-size: 13px;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);		
 }
 
 .trackrow{
@@ -254,4 +255,8 @@
 
 #tracknavcontainer > div > div:hover{
 	cursor: pointer;
+}
+
+.arrow{
+	font-size: 18px !important;
 }
